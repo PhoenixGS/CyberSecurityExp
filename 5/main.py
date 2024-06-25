@@ -78,12 +78,14 @@ class Show:
 
 if __name__ == '__main__':
     pub, priv = generate()
-    n = 3
-    m = 20
+    n = int(input())
+    m = int(input())
     voters = [Voter(pub) for _ in range(m)]
     tally = Tally(pub)
     show = Show(pub, priv)
-    votes = [voter.vote(i % n, n) for i, voter in enumerate(voters)]
+    votes = []
+    for i in range(m):
+        votes.append(voters[i].vote(int(input()), n))
     res = tally.count(votes, n)
     print(show.show(res))
 
